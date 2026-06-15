@@ -1,0 +1,411 @@
+/* --- Core Dark Mode Token Architectures --- */
+:root {
+    --font-sans: 'Inter', sans-serif;
+    --app-bg: #09090b; /* Deep obsidian backdrop */
+    --glass-surface: rgba(20, 20, 25, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --field-bg: rgba(255, 255, 255, 0.03);
+    --field-border: rgba(255, 255, 255, 0.08);
+    --field-focus-border: #6366f1;
+    --field-focus-ring: rgba(99, 102, 241, 0.15);
+    
+    --text-main: #fafafa;
+    --text-muted: #a1a1aa;
+    --text-disabled: #52525b;
+    --brand-cta: #ffffff;
+    --brand-cta-hover: #e4e4e7;
+    
+    --accent-error: #ef4444;
+    --accent-success: #10b981;
+    
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --timing-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--app-bg);
+    /* Decorative ambient illumination vectors */
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.08) 0px, transparent 50%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Glassmorphism UI Layout --- */
+.glass-card {
+    background: var(--glass-surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    width: 100%;
+    max-width: 450px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Branding Header Structures --- */
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.logo-box {
+    height: 44px;
+    width: 44px;
+    background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-box svg {
+    width: 22px;
+    height: 22px;
+    color: #ffffff;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.card-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 6px;
+}
+
+.card-header p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* --- Input UI Form Architecture --- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-container label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.password-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-field-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.field-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--text-disabled);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.field-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.input-field-wrapper input {
+    width: 100%;
+    padding: 11px 16px 11px 42px;
+    background: var(--field-bg);
+    border: 1px solid var(--field-border);
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: var(--timing-smooth);
+}
+
+.input-field-wrapper input:focus {
+    border-color: var(--field-focus-border);
+    box-shadow: 0 0 0 4px var(--field-focus-ring);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Invalid State Rendering styling */
+.input-field-wrapper input.invalid-state {
+    border-color: var(--accent-error) !important;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
+}
+
+.visibility-toggle {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    color: var(--text-disabled);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.visibility-toggle:hover {
+    color: var(--text-muted);
+}
+
+.visibility-toggle svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Custom Custom Checkbox Token --- */
+.options-row {
+    display: flex;
+    align-items: center;
+    padding-top: 2px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 16px;
+    width: 16px;
+    background-color: var(--field-bg);
+    border: 1px solid var(--field-border);
+    border-radius: 4px;
+    margin-right: 8px;
+    display: inline-block;
+    position: relative;
+    transition: var(--timing-smooth);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    border-color: var(--text-disabled);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--brand-cta);
+    border-color: var(--brand-cta);
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid #000000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark::after {
+    display: block;
+}
+
+.label-text {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* --- Interactive Core Buttons --- */
+.btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--timing-smooth);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-main {
+    background-color: var(--brand-cta);
+    color: #000000;
+    border: none;
+}
+
+.btn-main:hover:not(:disabled) {
+    background-color: var(--brand-cta-hover);
+}
+
+.btn-alt {
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--text-main);
+    border: 1px solid var(--field-border);
+}
+
+.btn-alt:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: var(--text-disabled);
+}
+
+.social-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+.inline-link {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.inline-link:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+/* --- Functional Layout Separators --- */
+.form-divider {
+    margin: 24px 0;
+    position: relative;
+    text-align: center;
+}
+
+.form-divider::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    top: 50%;
+    width: 100%;
+    border-top: 1px solid var(--field-border);
+    z-index: 1;
+}
+
+.form-divider span {
+    position: relative;
+    z-index: 2;
+    background-color: #121215; /* Fallback covering blending line context color */
+    padding: 0 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-disabled);
+}
+
+.card-footer {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* --- Form Micro-Validation Utilities --- */
+.validation-message {
+    font-size: 12px;
+    color: var(--accent-error);
+    min-height: 16px;
+    margin-top: 2px;
+}
+
+.spinner {
+    animation: rotate-loading 1s linear infinite;
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+}
+
+.opacity-25 { opacity: 0.25; }
+.opacity-75 { opacity: 0.75; }
+
+@keyframes rotate-loading {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hidden { display: none !important; }
+
+/* --- Modern Global Native Toast Module Styling --- */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.toast {
+    background: #18181b;
+    border: 1px solid var(--field-border);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    animation: slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    display: flex;
+    align-items: center;
+    border-left: 4px solid var(--brand-cta);
+}
+
+.toast.toast-error { border-left-color: var(--accent-error); }
+.toast.toast-success { border-left-color: var(--accent-success); }
+
+@keyframes slide-in {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

@@ -1,5 +1,6 @@
 // Import the Firebase Web SDK v10 components
-import { initializeApp } from "firebase/app";
+import { initializeApp } from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import { 
     getAuth, 
     signInWithEmailAndPassword, 
@@ -9,7 +10,7 @@ import {
     setPersistence,
     browserSessionPersistence,
     browserLocalPersistence
-} from "firebase/auth";
+} from  "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // 1. Paste Your Production Config Object Here Below
 // Import the functions you need from the SDKs you need
